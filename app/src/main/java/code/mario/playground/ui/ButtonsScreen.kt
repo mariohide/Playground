@@ -1,4 +1,4 @@
-package code.mario.playground
+package code.mario.playground.ui
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues

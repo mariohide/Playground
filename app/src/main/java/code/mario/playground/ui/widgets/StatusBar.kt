@@ -1,8 +1,7 @@
-package code.mario.playground
+package code.mario.playground.ui.widgets
 
 import android.app.Activity
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocal
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb

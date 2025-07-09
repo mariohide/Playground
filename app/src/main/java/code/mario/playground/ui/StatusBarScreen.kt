@@ -1,4 +1,4 @@
-package code.mario.playground
+package code.mario.playground.ui
 
 import android.app.Activity
 import androidx.compose.foundation.background

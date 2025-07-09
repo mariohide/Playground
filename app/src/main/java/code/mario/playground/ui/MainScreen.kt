@@ -1,4 +1,4 @@
-package code.mario.playground
+package code.mario.playground.ui
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -19,7 +19,9 @@ fun MainScreen(
     doDarkTheme: () -> Unit,
     onNavToIntrinsicSize: () -> Unit,
     onNavToSystemPadding: () -> Unit,
-    onNavToI18n: () -> Unit
+    onNavToI18n: () -> Unit,
+    onNavToMap: () -> Unit,
+    onNavToTerms:()-> Unit,
 ) {
     Column(
         Modifier
@@ -38,6 +40,8 @@ fun MainScreen(
             SwapFilledTonalButton(text = "IntrinsicSize") { onNavToIntrinsicSize() }
             SwapFilledTonalButton(text = "SystemPadding") { onNavToSystemPadding() }
             SwapFilledTonalButton(text = "I18n") { onNavToI18n() }
+            SwapFilledTonalButton(text = "Map") { onNavToMap() }
+            SwapFilledTonalButton(text = "Terms") { onNavToTerms() }
         }
         Row(
             Modifier

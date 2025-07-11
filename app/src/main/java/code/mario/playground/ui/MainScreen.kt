@@ -11,17 +11,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import code.mario.playground.ui.navigation.Route
 
 @Composable
 fun MainScreen(
-    onNavToButtons: () -> Unit,
-    onNavToStatus: () -> Unit,
-    doDarkTheme: () -> Unit,
-    onNavToIntrinsicSize: () -> Unit,
-    onNavToSystemPadding: () -> Unit,
-    onNavToI18n: () -> Unit,
-    onNavToMap: () -> Unit,
-    onNavToTerms:()-> Unit,
+    onNavigation: (Route) -> Unit
 ) {
     Column(
         Modifier
@@ -35,22 +29,13 @@ fun MainScreen(
                 .fillMaxHeight(.8f)
                 .padding(16.dp)
         ) {
-            SwapFilledTonalButton(text = "Buttons", onClick = { onNavToButtons() })
-            SwapFilledTonalButton(text = "Status", onClick = { onNavToStatus() })
-            SwapFilledTonalButton(text = "IntrinsicSize") { onNavToIntrinsicSize() }
-            SwapFilledTonalButton(text = "SystemPadding") { onNavToSystemPadding() }
-            SwapFilledTonalButton(text = "I18n") { onNavToI18n() }
-            SwapFilledTonalButton(text = "Map") { onNavToMap() }
-            SwapFilledTonalButton(text = "Terms") { onNavToTerms() }
-        }
-        Row(
-            Modifier
-                .fillMaxWidth()
-                .fillMaxHeight()
-        ) {
-            SwapFilledTonalButton(text = "dark") {
-                doDarkTheme()
-            }
+            SwapFilledTonalButton(text = "Buttons", onClick = { onNavigation(Route.Buttons) })
+            SwapFilledTonalButton(text = "Status", onClick = { onNavigation(Route.Status) })
+            SwapFilledTonalButton(text = "IntrinsicSize") { onNavigation(Route.IntrinsicSize) }
+            SwapFilledTonalButton(text = "SystemPadding") { onNavigation(Route.SystemPadding) }
+            SwapFilledTonalButton(text = "I18n") { onNavigation(Route.I18n) }
+            SwapFilledTonalButton(text = "Terms") { onNavigation(Route.Terms) }
+            SwapFilledTonalButton(text = "TabRow") { onNavigation(Route.TabRow) }
         }
     }
 }

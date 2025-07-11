@@ -17,32 +17,35 @@ import code.mario.playground.ui.MainScreen
 import code.mario.playground.ui.StatusBarScreen
 import code.mario.playground.ui.SystemPaddingScreen
 import code.mario.playground.ui.TermsRowScreen
-import code.mario.playground.ui.maps.MapScreen
+import code.mario.playground.ui.navigation.Route.*
+import code.mario.playground.ui.tabrow.TabRowRoute
 import kotlinx.serialization.Serializable
 
-@Serializable
-data object Main
+sealed class Route {
+    @Serializable
+    data object Main: Route()
 
-@Serializable
-data object Buttons
+    @Serializable
+    data object Buttons: Route()
 
-@Serializable
-data object Status
+    @Serializable
+    data object Status: Route()
 
-@Serializable
-data object IntrinsicSize
+    @Serializable
+    data object IntrinsicSize: Route()
 
-@Serializable
-data object SystemPadding
+    @Serializable
+    data object SystemPadding: Route()
 
-@Serializable
-data object I18n
+    @Serializable
+    data object I18n: Route()
 
-@Serializable
-data object Map
+    @Serializable
+    data object Terms: Route()
 
-@Serializable
-data object Terms
+    @Serializable
+    data object TabRow: Route()
+}
 
 @Composable
 fun AppNavHost(
@@ -80,16 +83,7 @@ fun AppNavHost(
         },
     ) {
         composable<Main> {
-            MainScreen(
-                onNavToButtons = { navController.navigate(Buttons) },
-                onNavToStatus = { navController.navigate(Status) },
-                onNavToIntrinsicSize = { navController.navigate(IntrinsicSize) },
-                onNavToSystemPadding = { navController.navigate(SystemPadding) },
-                onNavToI18n = { navController.navigate(I18n) },
-                onNavToMap = { navController.navigate(Map) },
-                onNavToTerms = {navController.navigate(Terms)},
-                doDarkTheme = doDarkTheme
-            )
+            MainScreen(onNavigation = { navController.navigate(it) })
         }
         composable<Buttons> {
             ButtonsScreen()
@@ -106,11 +100,11 @@ fun AppNavHost(
         composable<I18n> {
             I18nScreen()
         }
-        composable<Map> {
-            MapScreen()
-        }
         composable<Terms> {
             TermsRowScreen()
+        }
+        composable<TabRow> {
+            TabRowRoute()
         }
     }
 }

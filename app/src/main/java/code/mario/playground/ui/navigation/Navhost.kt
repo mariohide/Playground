@@ -11,6 +11,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import code.mario.playground.ui.ButtonsScreen
+import code.mario.playground.ui.ChipsScreen
 import code.mario.playground.ui.I18nScreen
 import code.mario.playground.ui.IntrinsicSizeScreen
 import code.mario.playground.ui.MainScreen
@@ -23,28 +24,31 @@ import kotlinx.serialization.Serializable
 
 sealed class Route {
     @Serializable
-    data object Main: Route()
+    data object Main : Route()
 
     @Serializable
-    data object Buttons: Route()
+    data object Buttons : Route()
 
     @Serializable
-    data object Status: Route()
+    data object Status : Route()
 
     @Serializable
-    data object IntrinsicSize: Route()
+    data object IntrinsicSize : Route()
 
     @Serializable
-    data object SystemPadding: Route()
+    data object SystemPadding : Route()
 
     @Serializable
-    data object I18n: Route()
+    data object I18n : Route()
 
     @Serializable
-    data object Terms: Route()
+    data object Terms : Route()
 
     @Serializable
-    data object TabRow: Route()
+    data object TabRow : Route()
+
+    @Serializable
+    data object Chips : Route()
 }
 
 @Composable
@@ -105,6 +109,9 @@ fun AppNavHost(
         }
         composable<TabRow> {
             TabRowRoute()
+        }
+        composable<Chips> {
+            ChipsScreen()
         }
     }
 }

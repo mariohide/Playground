@@ -36,6 +36,7 @@ fun MainScreen(
             SwapFilledTonalButton(text = "I18n") { onNavigation(Route.I18n) }
             SwapFilledTonalButton(text = "Terms") { onNavigation(Route.Terms) }
             SwapFilledTonalButton(text = "TabRow") { onNavigation(Route.TabRow) }
+            SwapFilledTonalButton(text = "Chips") { onNavigation(Route.Chips) }
         }
     }
 }

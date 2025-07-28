@@ -1,19 +1,19 @@
 [versions]
-agp = "8.9.2"
-kotlin = "2.0.21"
+agp = "8.10.1"
+kotlin = "2.2.0"
 coreKtx = "1.16.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
-lifecycleRuntimeKtx = "2.8.7"
+lifecycleRuntimeKtx = "2.9.2"
 activityCompose = "1.10.1"
-composeBom = "2025.04.01"
-navigation = "2.8.9"
-kotlinxSerializationJson = "1.7.3"
-coil = "3.2.0"
-amap = "10.1.201_loc6.4.9_sea9.7.4"
+composeBom = "2025.07.00"
+navigation = "2.9.2"
+kotlinxSerializationJson = "1.9.0"
+coil = "3.3.0"
 constraintLayout = "1.1.1"
 constraintlayoutVersion = "2.2.1"
+mapsCompose = "6.7.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -33,9 +33,9 @@ androidx-material3 = { group = "androidx.compose.material3", name = "material3" 
 androidx-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation" }
 kotlin-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
-amap = { module = "com.amap.api:3dmap-location-search", version.ref = "amap" }
-constraintLayout = {module = "androidx.constraintlayout:constraintlayout-compose",version.ref="constraintLayout"}
+constraintLayout = { module = "androidx.constraintlayout:constraintlayout-compose", version.ref = "constraintLayout" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayoutVersion" }
+maps-compose = { module = "com.google.maps.android:maps-compose", version.ref = "mapsCompose" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

@@ -66,6 +66,6 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation(libs.coil.compose)
-    implementation(libs.amap)
     implementation(libs.constraintLayout)
+    implementation(libs.maps.compose)
 }

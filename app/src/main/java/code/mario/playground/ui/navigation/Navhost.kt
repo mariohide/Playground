@@ -18,6 +18,7 @@ import code.mario.playground.ui.MainScreen
 import code.mario.playground.ui.StatusBarScreen
 import code.mario.playground.ui.SystemPaddingScreen
 import code.mario.playground.ui.TermsRowScreen
+import code.mario.playground.ui.maps.MapsScreen
 import code.mario.playground.ui.navigation.Route.*
 import code.mario.playground.ui.tabrow.TabRowRoute
 import kotlinx.serialization.Serializable
@@ -49,6 +50,9 @@ sealed class Route {
 
     @Serializable
     data object Chips : Route()
+
+    @Serializable
+    data object Maps : Route()
 }
 
 @Composable
@@ -112,6 +116,9 @@ fun AppNavHost(
         }
         composable<Chips> {
             ChipsScreen()
+        }
+        composable<Maps> {
+            MapsScreen(onNavigation = { navController.navigate(it) })
         }
     }
 }

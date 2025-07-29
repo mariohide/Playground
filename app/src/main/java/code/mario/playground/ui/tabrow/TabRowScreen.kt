@@ -1,8 +1,8 @@
 package code.mario.playground.ui.tabrow
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -28,12 +28,16 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import code.mario.playground.ui.SwapFilledTonalButton
 import kotlinx.coroutines.launch
 import kotlin.math.abs
+
+val colors = listOf(Color.White, Color.Red, Color.Blue)
+private const val TAG = "TabRowScreen"
 
 @Composable
 fun TabRowRoute(viewModel: TabRowViewModel = viewModel()) {
@@ -48,7 +52,19 @@ fun TabRowScreen(state: TabRowViewModel.UiState, action: (TabRowViewModel.UiActi
             .fillMaxSize()
             .systemBarsPadding()
     ) {
-        TabbedPager(state.tabs, state.selectedTab, action)
+        TabbedPager(
+            tabs = state.tabs,
+            selectedTabIndex = state.selectedTab,
+            onTabChange = { action(TabRowViewModel.UiAction.OnTabChange(it)) },
+            tabContent = { Text(it.name) },
+            pagerContent = {
+                Box(
+                    Modifier
+                        .fillMaxSize()
+                        .background(color = colors[it.ordinal % 3])
+                )
+            }
+        )
         SwapFilledTonalButton(text = "to 3", modifier = Modifier.align(Alignment.BottomEnd)) {
             action(TabRowViewModel.UiAction.OnTabChange(3))
         }
@@ -56,14 +72,25 @@ fun TabRowScreen(state: TabRowViewModel.UiState, action: (TabRowViewModel.UiActi
 }
 
 @Composable
-fun TabbedPager(
-    tabs: List<TabRowViewModel.Tab>,
+fun <T> TabbedPager(
+    tabs: List<T>,
     selectedTabIndex: Int,
-    action: (TabRowViewModel.UiAction.OnTabChange) -> Unit
+    onTabChange: (Int) -> Unit,
+    tabContent: @Composable (T) -> Unit,
+    tabIndicator: @Composable BoxScope.() -> Unit = {
+        Box(
+            Modifier
+                .align(Alignment.BottomCenter)
+                .width(16.dp)
+                .height(2.dp)
+                .background(MaterialTheme.colorScheme.primary)
+        )
+    },
+    pagerContent: @Composable (T) -> Unit
 ) {
     val coroutineScope = rememberCoroutineScope()
     val pagerState = rememberPagerState(
-        initialPage = 0,
+        initialPage = selectedTabIndex,
         pageCount = { tabs.size }
     )
 
@@ -83,11 +110,13 @@ fun TabbedPager(
     }
 
     LaunchedEffect(pagerState.settledPage) {
-        action(TabRowViewModel.UiAction.OnTabChange(pagerState.settledPage))
+        if (pagerState.settledPage != selectedTabIndex) {
+            onTabChange(pagerState.settledPage)
+        }
     }
 
     LaunchedEffect(selectedTabIndex) {
-        if (!pagerState.isScrollInProgress && selectedTabIndex != pagerState.settledPage) {
+        if (!pagerState.isScrollInProgress && selectedTabIndex != pagerState.currentPage) {
             pagerState.animateScrollToPage(selectedTabIndex)
         }
     }
@@ -107,19 +136,13 @@ fun TabbedPager(
                             swipeProgress = pagerState.currentPageOffsetFraction
                         )
                 ) {
-                    Box(
-                        Modifier
-                            .align(Alignment.BottomCenter)
-                            .width(16.dp)
-                            .height(2.dp)
-                            .background(MaterialTheme.colorScheme.primary)
-                    )
+                    tabIndicator()
                 }
             }
         ) {
             tabs.forEachIndexed { index, title ->
                 Tab(
-                    text = { Text(title.name) },
+                    text = { tabContent(title) },
                     selected = selectedTabIndex == index,
                     onClick = {
                         coroutineScope.launch {
@@ -133,13 +156,7 @@ fun TabbedPager(
             modifier = Modifier.fillMaxSize(),
             state = pagerState
         ) { pageIndex ->
-            Column(
-                modifier = Modifier.fillMaxSize(),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Text("Page $pageIndex")
-            }
+            pagerContent(tabs[pageIndex])
         }
     }
 }

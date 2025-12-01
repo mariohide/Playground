@@ -6,8 +6,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
@@ -48,11 +46,11 @@ fun TopBar(
                     .size(48.dp),
                 onClick = { onBack() }
             ) {
-                Icon(
-                    painter = rememberVectorPainter(Icons.Default.ArrowBack),
-                    contentDescription = null,
-                    tint = if (isDark) White else Color.Black
-                )
+//                Icon(
+//                    painter = rememberVectorPainter(Icons.Default.ArrowBack),
+//                    contentDescription = null,
+//                    tint = if (isDark) White else Color.Black
+//                )
             }
         }
 

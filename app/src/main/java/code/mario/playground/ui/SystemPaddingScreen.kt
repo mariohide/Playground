@@ -6,9 +6,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Search
-import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -39,7 +36,7 @@ fun RentalTopBar(address: String, onScan: () -> Unit, onSearch: () -> Unit) {
         Text(modifier = Modifier.weight(1f), text = address)
      
         IconButton(onClick = onSearch) {
-            Icon(imageVector = Icons.Default.Search, contentDescription = null)
+//            Icon(imageVector = Icons.Default.Search, contentDescription = null)
         }
     }
 }

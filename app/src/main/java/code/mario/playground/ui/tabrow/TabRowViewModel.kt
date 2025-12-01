@@ -15,7 +15,7 @@ class TabRowViewModel : ViewModel() {
     }
 
     data class UiState(
-        val selectedTab: Int = 0,
+        val selectedTab: Int = 1,
         val tabs: List<Tab> = Tab.entries
     )
 

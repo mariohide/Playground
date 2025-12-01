@@ -37,7 +37,6 @@ import kotlinx.coroutines.launch
 import kotlin.math.abs
 
 val colors = listOf(Color.White, Color.Red, Color.Blue)
-private const val TAG = "TabRowScreen"
 
 @Composable
 fun TabRowRoute(viewModel: TabRowViewModel = viewModel()) {
@@ -94,8 +93,8 @@ fun <T> TabbedPager(
         pageCount = { tabs.size }
     )
 
-    var previousTabIndex by remember { mutableIntStateOf(0) }
-    var targetTabIndex by remember { mutableIntStateOf(0) }
+    var previousTabIndex by remember { mutableIntStateOf(selectedTabIndex) }
+    var targetTabIndex by remember { mutableIntStateOf(selectedTabIndex) }
 
     LaunchedEffect(pagerState.currentPageOffsetFraction) {
         val scrollFraction = pagerState.currentPageOffsetFraction
@@ -161,7 +160,7 @@ fun <T> TabbedPager(
     }
 }
 
-fun Modifier.smoothTabIndicatorOffset(
+private fun Modifier.smoothTabIndicatorOffset(
     previousTabPosition: TabPosition,
     newTabPosition: TabPosition,
     swipeProgress: Float

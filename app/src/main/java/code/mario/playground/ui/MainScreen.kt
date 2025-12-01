@@ -37,5 +37,7 @@ fun MainScreen(
         SwapFilledTonalButton(text = "TabRow") { onNavigation(Route.TabRow) }
         SwapFilledTonalButton(text = "Chips") { onNavigation(Route.Chips) }
         SwapFilledTonalButton(text = "Maps") { onNavigation(Route.Maps) }
+        SwapFilledTonalButton(text = "Pull to Refresh") { onNavigation(Route.PullToRefresh) }
+        SwapFilledTonalButton(text = "Date Picker") {onNavigation(Route.DatePicker) }
     }
 }

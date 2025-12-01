@@ -12,6 +12,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import code.mario.playground.ui.ButtonsScreen
 import code.mario.playground.ui.ChipsScreen
+import code.mario.playground.ui.DatePickerScreen
 import code.mario.playground.ui.I18nScreen
 import code.mario.playground.ui.IntrinsicSizeScreen
 import code.mario.playground.ui.MainScreen
@@ -20,6 +21,7 @@ import code.mario.playground.ui.SystemPaddingScreen
 import code.mario.playground.ui.TermsRowScreen
 import code.mario.playground.ui.maps.MapsScreen
 import code.mario.playground.ui.navigation.Route.*
+import code.mario.playground.ui.pulltorefresh.PullToRefreshScreen
 import code.mario.playground.ui.tabrow.TabRowRoute
 import kotlinx.serialization.Serializable
 
@@ -53,6 +55,12 @@ sealed class Route {
 
     @Serializable
     data object Maps : Route()
+
+    @Serializable
+    data object PullToRefresh : Route()
+
+    @Serializable
+    data object DatePicker : Route()
 }
 
 @Composable
@@ -119,6 +127,13 @@ fun AppNavHost(
         }
         composable<Maps> {
             MapsScreen(onNavigation = { navController.navigate(it) })
+        }
+        composable<PullToRefresh> {
+            PullToRefreshScreen()
+        }
+
+        composable<DatePicker> {
+            DatePickerScreen()
         }
     }
 }

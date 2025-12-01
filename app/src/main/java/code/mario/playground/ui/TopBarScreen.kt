@@ -20,8 +20,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Check
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -133,11 +131,11 @@ fun RoundedCornerCheckbox(
                 ),
                 exit = fadeOut()
             ) {
-                Icon(
-                    Icons.Default.Check,
-                    contentDescription = null,
-                    tint = uncheckedColor
-                )
+//                Icon(
+//                    Icons.Default.Check,
+//                    contentDescription = null,
+//                    tint = uncheckedColor
+//                )
             }
         }
         Spacer(Modifier.width(4.dp))
